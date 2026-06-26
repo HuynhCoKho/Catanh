@@ -1,0 +1,81 @@
+<!doctype html>
+<html lang="vi">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Cắt Ảnh Sticker Tự Động</title>
+    <meta
+      name="description"
+      content="Công cụ cắt ảnh sticker tự động chạy ngay trong trình duyệt."
+    />
+    <link rel="stylesheet" href="./styles.css" />
+  </head>
+  <body>
+    <main class="app-shell">
+      <section class="workspace">
+        <aside class="sidebar" aria-label="Bảng điều khiển">
+          <div class="brand">
+            <div class="mark">CA</div>
+            <div>
+              <h1>Cắt ảnh</h1>
+              <p>Tách sticker tự động từ một ảnh lớn.</p>
+            </div>
+          </div>
+
+          <label class="drop-zone" id="dropZone">
+            <input id="fileInput" type="file" accept="image/*" />
+            <span>Chọn ảnh hoặc kéo thả vào đây</span>
+            <small>PNG, JPG, JPEG, WEBP</small>
+          </label>
+
+          <div class="controls">
+            <label>
+              <span>Viền thêm quanh sticker</span>
+              <input id="paddingInput" type="range" min="0" max="40" value="14" />
+              <output id="paddingValue">14 px</output>
+            </label>
+
+            <label>
+              <span>Độ nhạy nhận diện</span>
+              <input id="sensitivityInput" type="range" min="40" max="120" value="70" />
+              <output id="sensitivityValue">70</output>
+            </label>
+
+            <label class="check-row">
+              <input id="transparentInput" type="checkbox" checked />
+              <span>Nền ngoài sticker trong suốt</span>
+            </label>
+          </div>
+
+          <div class="actions">
+            <button id="scanButton" type="button" disabled>Quét lại</button>
+            <button id="downloadAllButton" type="button" disabled>Tải tất cả</button>
+          </div>
+
+          <p class="status" id="status">Chưa có ảnh nào được chọn.</p>
+        </aside>
+
+        <section class="preview-panel" aria-label="Xem trước">
+          <div class="canvas-wrap">
+            <canvas id="previewCanvas"></canvas>
+            <div class="empty-state" id="emptyState">
+              <strong>Thả ảnh sticker vào đây</strong>
+              <span>Ứng dụng sẽ tự tìm từng sticker và đánh số vùng cắt.</span>
+            </div>
+          </div>
+        </section>
+      </section>
+
+      <section class="results" aria-label="Sticker đã cắt">
+        <div class="results-head">
+          <h2>Sticker đã tách</h2>
+          <span id="countLabel">0 file</span>
+        </div>
+        <div class="sticker-grid" id="stickerGrid"></div>
+      </section>
+    </main>
+
+    <script src="https://cdn.jsdelivr.net/npm/jszip@3.10.1/dist/jszip.min.js"></script>
+    <script src="./app.js"></script>
+  </body>
+</html>
